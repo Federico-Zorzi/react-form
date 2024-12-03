@@ -7,20 +7,25 @@ import articles from "../../assets/data/articles";
 export default function Main() {
   const [articleTitleInput, setArticleTitleInput] = useState("");
   const [articleContentInput, setArticleContentInput] = useState("");
+  const [articleAuthorInput, setArticleAuthorInput] = useState("");
 
   const [articlesList, setArticlesList] = useState(articles);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!articleTitleInput || !articleContentInput) {
+    if (!articleTitleInput || !articleContentInput || !articleAuthorInput) {
       alert("Completa tutti i campi per creare il nuovo articolo");
       return;
     }
 
     const updatedList = [
       ...articlesList,
-      { title: articleTitleInput, content: articleContentInput },
+      {
+        title: articleTitleInput,
+        content: articleContentInput,
+        author: articleAuthorInput,
+      },
     ];
     setArticlesList(updatedList);
   };
@@ -37,36 +42,60 @@ export default function Main() {
         {/* FORM SECTION */}
         <section className="form-section">
           <form onSubmit={handleSubmit}>
-            {/* INPUT FOR ARTICLE TITLE */}
-            <div className="mb-3">
-              <label htmlFor="articleTitle" className="form-label">
-                Titolo articolo
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="articleTitle"
-                value={articleTitleInput}
-                onChange={(e) => {
-                  setArticleTitleInput(e.target.value);
-                }}
-              />
-            </div>
+            <div className="row">
+              {/* INPUT FOR ARTICLE TITLE */}
+              <div className="col-6">
+                <div className="mb-3">
+                  <label htmlFor="articleTitle" className="form-label">
+                    Titolo articolo
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="articleTitle"
+                    value={articleTitleInput}
+                    onChange={(e) => {
+                      setArticleTitleInput(e.target.value);
+                    }}
+                  />
+                </div>
+              </div>
 
-            {/* INPUT FOR ARTICLE CONTENT */}
-            <div className="mb-3">
-              <label htmlFor="articleContent" className="form-label">
-                Contenuto articolo
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="articleContent"
-                value={articleContentInput}
-                onChange={(e) => {
-                  setArticleContentInput(e.target.value);
-                }}
-              />
+              {/* INPUT FOR ARTICLE AUTHOR */}
+              <div className="col-6">
+                <div className="mb-3">
+                  <label htmlFor="articleAuthor" className="form-label">
+                    Autore
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="articleAuthor"
+                    value={articleAuthorInput}
+                    onChange={(e) => {
+                      setArticleAuthorInput(e.target.value);
+                    }}
+                  />
+                </div>
+              </div>
+
+              <div className="col-12">
+                {/* INPUT FOR ARTICLE CONTENT */}
+                <div className="mb-3">
+                  <label htmlFor="articleContent" className="form-label">
+                    Contenuto articolo
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="articleContent"
+                    value={articleContentInput}
+                    onChange={(e) => {
+                      setArticleContentInput(e.target.value);
+                    }}
+                  />
+                </div>
+              </div>
             </div>
 
             {/* BUTTON FOR SUBMIT */}
@@ -84,6 +113,7 @@ export default function Main() {
               index={index}
               title={article.title}
               content={article.content}
+              author={article.author}
               deleteFunction={deleteArticle}
             ></Article>
           ))}
