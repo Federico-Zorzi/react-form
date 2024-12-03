@@ -1,10 +1,15 @@
+import { useState } from "react";
+
 export default function Article({
   index,
   title,
   content,
   author,
   deleteFunction,
+  modifyFunction,
 }) {
+  const [modifyTitleInput, setModifyTitleInput] = useState("");
+
   return (
     <article>
       <div className="card my-3">
@@ -13,13 +18,35 @@ export default function Article({
           <p className="card-text">{content}</p>
           <span className="fst-italic">{author}</span>
 
-          <button
-            className="btn btn-danger ms-auto"
-            type="button"
-            onClick={() => deleteFunction(index)}
-          >
-            <i className="fa-solid fa-trash"></i>
-          </button>
+          {/* DELETE ARTICLE FUNCTION */}
+          <div className="delete-article mt-1 ms-auto">
+            <button
+              className="btn btn-danger "
+              type="button"
+              onClick={() => deleteFunction(index)}
+            >
+              <i className="fa-solid fa-trash"></i>
+            </button>
+          </div>
+
+          {/* MODIFY ARTICLE TITLE FUNCTION */}
+          <div className="modify-title mt-1 ms-auto">
+            <input
+              type="text"
+              id="floatingInput"
+              placeholder="Modifica Titolo"
+              value={modifyTitleInput}
+              onChange={(e) => setModifyTitleInput(e.target.value)}
+            />
+
+            <button
+              className="btn btn-success ms-2"
+              type="button"
+              onClick={() => modifyFunction(index, modifyTitleInput)}
+            >
+              <i className="fa-solid fa-pen"></i>
+            </button>
+          </div>
         </div>
       </div>
     </article>

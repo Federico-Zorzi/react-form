@@ -36,6 +36,18 @@ export default function Main() {
     setArticlesList(updatedList);
   };
 
+  const modifyArticle = (index, modifyTitleInput) => {
+    console.log(index, modifyTitleInput);
+
+    const updatedList = [...articlesList];
+
+    const articleTomodify = updatedList.find((article, i) => i === index);
+
+    articleTomodify.title = modifyTitleInput;
+
+    setArticlesList(updatedList);
+  };
+
   return (
     <main>
       <div className="container">
@@ -115,6 +127,7 @@ export default function Main() {
               content={article.content}
               author={article.author}
               deleteFunction={deleteArticle}
+              modifyFunction={modifyArticle}
             ></Article>
           ))}
         </section>
