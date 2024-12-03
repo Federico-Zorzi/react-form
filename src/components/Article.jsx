@@ -42,7 +42,9 @@ export default function Article({
             <button
               className="btn btn-success ms-2"
               type="button"
-              onClick={() => modifyFunction(index, modifyTitleInput)}
+              onClick={() =>
+                modifyFunction(index, modifyTitleInput, setModifyTitleInput)
+              }
             >
               <i className="fa-solid fa-pen"></i>
             </button>

@@ -28,6 +28,11 @@ export default function Main() {
       },
     ];
     setArticlesList(updatedList);
+
+    /* reset input fields */
+    setArticleTitleInput("");
+    setArticleContentInput("");
+    setArticleAuthorInput("");
   };
 
   const deleteArticle = (index) => {
@@ -36,16 +41,18 @@ export default function Main() {
     setArticlesList(updatedList);
   };
 
-  const modifyArticle = (index, modifyTitleInput) => {
+  const modifyArticle = (index, modifyTitleInput, setModifyTitleInput) => {
     console.log(index, modifyTitleInput);
 
     const updatedList = [...articlesList];
 
     const articleTomodify = updatedList.find((article, i) => i === index);
-
     articleTomodify.title = modifyTitleInput;
 
     setArticlesList(updatedList);
+
+    /* reset input fields */
+    setModifyTitleInput("");
   };
 
   return (
