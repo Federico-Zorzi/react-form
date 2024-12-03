@@ -10,7 +10,7 @@ function App() {
     <>
       <Header></Header>
       <Main></Main>
-      <Footer></Footer>
+      {/* <Footer></Footer> */}
     </>
   );
 }
